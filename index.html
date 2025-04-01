@@ -104,6 +104,19 @@
                 projects: '<h2>Calculadora Skill</h2><p>Lista de projetos...</p>',
                 contact: '<h2>Contato</h2><p>Informações de contato...</p>'
             };
+
+        const content = {
+            about: '<h2>Sobre</h2><p>Informações sobre o projeto...</p>',
+            experience: `
+                <h2>Experiência</h2>
+                <p>Detalhes da experiência...</p>
+                <script src="https://gist.github.com/Abszoluto/a724d78c0302124efd0bd093df59bdd5.js"></script>
+            `,
+            projects: '<h2>Projetos</h2><p>Lista de projetos...</p>',
+            contact: '<h2>Contato</h2><p>Informações de contato...</p>'
+        };
+
+
             
             document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
         }
