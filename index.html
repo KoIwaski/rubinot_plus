@@ -18,7 +18,7 @@
 
         body {
             font-family: 'Roboto Mono', monospace;
-            background: url('fundo_cinza.png') no-repeat center center fixed;
+            background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #FFFFFF;
             text-align: center;
@@ -52,6 +52,10 @@
             transition: background 0.3s;
         }
 
+        nav button.selected {
+            background: #FFA500;
+        }
+
         nav button:hover {
             background: #0080C0;
         }
@@ -77,16 +81,13 @@
         <img src="logo.png" alt="Logo do Projeto">
     </header>
 
-
     <nav>
-    <div class="button-bar">
-        <button onclick="showContent('about')">Guia Task</button>
-        <button onclick="showContent('experience')">Calculadora XP</button>
-        <button onclick="showContent('projects')">Calculadora Skill</button>
-        <button onclick="showContent('contact')">Contato</button>
-    </div>
-</nav>
-
+        <button onclick="showContent('task', this)">Guia task</button>
+        <button onclick="showContent('experience', this)">Calculadora XP</button>
+        <button onclick="showContent('skill', this)">Calculadora Skill</button>
+        <button onclick="showContent('contact', this)">Contato</button>
+        <button onclick="showContent('live', this)">Live Sorteio</button>
+    </nav>
 
     <div id="content">
         <p>Bem-vindo! Escolha uma das opções acima.</p>
@@ -97,35 +98,24 @@
     </footer>
 
     <script>
-        
-function showContent(section) {
-    const content = {
-        about: '<h2>Guia Task</h2><p>Informações sobre o projeto...</p>',
-        experience: `
-            <h2>Calculadora XP</h2>
-            <p>Detalhes da experiência...</p>
-            <div id="script-placeholder"></div>
-        `,
-        projects: '<h2>Calculadora Skill</h2><p>Lista de projetos...</p>',
-        contact: '<h2>Contato</h2><p>Informações de contato...</p>'
-    };
+        function showContent(section, button) {
+            const content = {
+                task: '<h2>Guia task</h2><p>Ferramentas e recursos para realizar tarefas de forma eficiente.</p>',
+                experience: '<h2>Calculadora XP</h2><p>Calcule e acompanhe seus pontos de experiência acumulados.</p>',
+                skill: '<h2>Calculadora Skill</h2><p>Descubra e gerencie suas habilidades.</p>',
+                contact: '<h2>Contato</h2><p>Entre em contato conosco para mais informações.</p>',
+                live: '<h2>Live Sorteio</h2><p>Acompanhe nossas lives e participe dos sorteios!</p>'
+            };
 
-    document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
-
-    if (section === 'experience') {
-        addScript('https://gist.github.com/Abszoluto/a724d78c0302124efd0bd093df59bdd5.js');
-    }
-}
-
-function addScript(src) {
-    const scriptElement = document.createElement('script');
-    scriptElement.src = src;
-    scriptElement.async = true; // Carrega o script de forma assíncrona
-    document.getElementById('script-placeholder').appendChild(scriptElement);
-}
-
-            
+            // Atualizar conteúdo
             document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
+
+            // Remover classe 'selected' de todos os botões
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+
+            // Adicionar classe 'selected' ao botão clicado
+            button.classList.add('selected');
         }
     </script>
 </body>
