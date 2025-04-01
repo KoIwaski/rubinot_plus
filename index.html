@@ -1,26 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<header>
-    <img src="fundo_cinza.png" alt="Logo do Projeto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXABFN3y3zH+eF5PzZd1rJ9+K3I/5V1ZPj6DgKfDqg3HcX/8EUMF6oK3yXQ9gpr7ZpX2jZ9Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-header {
-    padding: 0;
-    background: none;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-header img {
-    width: 100%;
-    max-height: 200px; /* Ajuste conforme necessário */
-    object-fit: cover;
-}
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #FFFFFF;
+            text-align: center;
+        }
 
-</header>
+        header {
+            padding: 0;
+            background: none;
+        }
 
-    
+        header img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav a {
+            display: inline-block;
+            background: #00A4EF;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #0080C0;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            color: #666666;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
 <body>
     <header>
-        <h1>Projeto</h1>
+        <img src="logo.png" alt="Logo do Projeto">
     </header>
 
     <nav>
