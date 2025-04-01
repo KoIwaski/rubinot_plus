@@ -97,19 +97,32 @@
     </footer>
 
     <script>
-        function showContent(section) {
+        
+function showContent(section) {
+    const content = {
+        about: '<h2>Guia Task</h2><p>Informações sobre o projeto...</p>',
+        experience: `
+            <h2>Calculadora XP</h2>
+            <p>Detalhes da experiência...</p>
+            <div id="script-placeholder"></div>
+        `,
+        projects: '<h2>Calculadora Skill</h2><p>Lista de projetos...</p>',
+        contact: '<h2>Contato</h2><p>Informações de contato...</p>'
+    };
 
-        const content = {
-            about: '<h2>Guia Task</h2><p>Informações sobre o projeto...</p>',
-            experience: `
-                <h2>Calculadora XP</h2>
-                <p>Detalhes da experiência...</p>
-                <script src="https://gist.github.com/Abszoluto/a724d78c0302124efd0bd093df59bdd5.js"></script>
-            `,
-            projects: '<h2>Calculadora Skill</h2><p>Lista de projetos...</p>',
-            contact: '<h2>Contato</h2><p>Informações de contato...</p>'
-        };
+    document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
 
+    if (section === 'experience') {
+        addScript('https://gist.github.com/Abszoluto/a724d78c0302124efd0bd093df59bdd5.js');
+    }
+}
+
+function addScript(src) {
+    const scriptElement = document.createElement('script');
+    scriptElement.src = src;
+    scriptElement.async = true; // Carrega o script de forma assíncrona
+    document.getElementById('script-placeholder').appendChild(scriptElement);
+}
 
             
             document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
