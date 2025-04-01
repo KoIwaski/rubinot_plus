@@ -18,7 +18,7 @@
 
         body {
             font-family: 'Roboto Mono', monospace;
-            background: url('fundo_cinza.png') no-repeat center center fixed;
+            background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #FFFFFF;
             text-align: center;
@@ -39,19 +39,28 @@
             margin-top: 20px;
         }
 
-        nav a {
+        nav button {
             display: inline-block;
             background: #00A4EF;
             color: #FFFFFF;
             padding: 10px 20px;
             margin: 10px;
-            text-decoration: none;
+            border: none;
             border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
             transition: background 0.3s;
         }
 
-        nav a:hover {
+        nav button:hover {
             background: #0080C0;
+        }
+
+        #content {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
         }
 
         footer {
@@ -69,15 +78,32 @@
     </header>
 
     <nav>
-        <a href="about.html" target="_blank">Sobre</a>
-        <a href="experience.html" target="_blank">Experiência</a>
-        <a href="projects.html" target="_blank">Projetos</a>
-        <a href="contact.html" target="_blank">Contato</a>
+        <button onclick="showContent('about')">Sobre</button>
+        <button onclick="showContent('experience')">Experiência</button>
+        <button onclick="showContent('projects')">Projetos</button>
+        <button onclick="showContent('contact')">Contato</button>
     </nav>
+
+    <div id="content">
+        <p>Bem-vindo! Escolha uma das opções acima.</p>
+    </div>
 
     <footer>
         &copy; 2025 Projeto
     </footer>
+
+    <script>
+        function showContent(section) {
+            const content = {
+                about: '<h2>Sobre</h2><p>Informações sobre o projeto...</p>',
+                experience: '<h2>Experiência</h2><p>Detalhes da experiência...</p>',
+                projects: '<h2>Projetos</h2><p>Lista de projetos...</p>',
+                contact: '<h2>Contato</h2><p>Informações de contato...</p>'
+            };
+            
+            document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
+        }
+    </script>
 </body>
 
 </html>
