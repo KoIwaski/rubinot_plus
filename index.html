@@ -104,16 +104,29 @@
                 experience: '<h2>Calculadora XP</h2><p>Calcule e acompanhe seus pontos de experiência acumulados.</p>',
                 skill: '<h2>Calculadora Skill</h2><p>Descubra e gerencie suas habilidades.</p>',
                 contact: '<h2>Contato</h2><p>Entre em contato conosco para mais informações.</p>',
-            live: `<h2>Live Sorteio</h2>
-                   <iframe 
-                       src="https://player.twitch.tv/?channel=avelar_rp&parent=rubinot-plus.vercel.app" 
-                       frameborder="0" 
-                       allowfullscreen="true" 
-                       scrolling="no" 
-                       height="400" 
-                       width="100%">
-                   </iframe>
-                   <p>Assista à nossa live diretamente aqui!</p>`
+                
+                        live: `<h2>Live Sorteio</h2>
+                               <div style="display: flex; flex-wrap: wrap;">
+                                   <!-- Player da Twitch -->
+                                   <iframe 
+                                       src="https://player.twitch.tv/?channel=avelar_rp&parent=rubinot-plus.vercel.app" 
+                                       frameborder="0" 
+                                       allowfullscreen="true" 
+                                       scrolling="no" 
+                                       height="400" 
+                                       width="70%">
+                                   </iframe>
+                                   
+                                   <!-- Chat da Twitch -->
+                                   <iframe 
+                                       src="https://www.twitch.tv/embed/avelar_rp/chat?parent=rubinot-plus.vercel.app" 
+                                       frameborder="0" 
+                                       scrolling="no" 
+                                       height="400" 
+                                       width="30%">
+                                   </iframe>
+                               </div>
+                               <p>Assista à nossa live e interaja no chat ao lado!</p>`
 
             };
 
