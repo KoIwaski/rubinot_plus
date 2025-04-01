@@ -77,12 +77,16 @@
         <img src="logo.png" alt="Logo do Projeto">
     </header>
 
+
     <nav>
-        <button onclick="showContent('about')">Sobre</button>
-        <button onclick="showContent('experience')">Experiência</button>
-        <button onclick="showContent('projects')">Projetos</button>
+    <div class="button-bar">
+        <button onclick="showContent('about')">Guia Task</button>
+        <button onclick="showContent('experience')">Calculadora XP</button>
+        <button onclick="showContent('projects')">Calculadora Skill</button>
         <button onclick="showContent('contact')">Contato</button>
-    </nav>
+    </div>
+</nav>
+
 
     <div id="content">
         <p>Bem-vindo! Escolha uma das opções acima.</p>
@@ -95,9 +99,9 @@
     <script>
         function showContent(section) {
             const content = {
-                about: '<h2>Sobre</h2><p>Informações sobre o projeto...</p>',
-                experience: '<h2>Experiência</h2><p>Detalhes da experiência...</p>',
-                projects: '<h2>Projetos</h2><p>Lista de projetos...</p>',
+                about: '<h2>Guia Task</h2><p>Informações sobre o projeto...</p>',
+                experience: '<h2>Calculadora XP</h2><p>Detalhes da experiência...</p>',
+                projects: '<h2>Calculadora Skill</h2><p>Lista de projetos...</p>',
                 contact: '<h2>Contato</h2><p>Informações de contato...</p>'
             };
             
