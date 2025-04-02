@@ -174,10 +174,22 @@ async function loadTaskContentFromSpreadsheet() {
         const table = doc.querySelector('table');
 
         if (table) {
-            // Iterar pelas linhas da tabela para adicionar links
-            const rows = table.querySelectorAll('tbody tr');
-            rows.forEach(row => {
+            // Criar uma nova tabela para manipular diretamente
+            const newTable = document.createElement('table');
+            newTable.innerHTML = `<colgroup>
+                <col class="largura-grupo1">
+                <col class="largura-grupo2">
+            </colgroup>`;
+            newTable.style.width = table.style.width || "100%";
+            newTable.style.borderCollapse = "collapse";
+
+            // Obter todas as linhas da tabela original
+            const rows = table.querySelectorAll('tr');
+
+            rows.forEach((row, rowIndex) => {
+                const newRow = document.createElement('tr');
                 const cells = row.querySelectorAll('td');
+                const colValuable = 'hidden;';
                 
                 // Verifica se a coluna 8 e 9 existem
                 if (cells[7] && cells[8]) {
