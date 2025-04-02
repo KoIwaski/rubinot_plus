@@ -174,7 +174,7 @@ async function loadTaskContentFromSpreadsheet() {
         const table = doc.querySelector('table');
 
         if (table) {
-            // Renderizar a tabela no conteúdo da página sem alterações
+            // Renderizar a tabela no conteúdo da página sem modificações
             document.getElementById('content').innerHTML = `<h2>Guia de Tarefas - Sala 01</h2>${table.outerHTML}`;
         } else {
             document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
