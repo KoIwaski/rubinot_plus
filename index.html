@@ -72,8 +72,8 @@
         }
 
         nav button.selected {
-            background: #FFD700; /* Dourado claro */
-            color: black; /* Letra preta */
+            background: #FFD700;
+            color: black;
         }
 
         #content {
@@ -93,7 +93,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            text-align: center; /* Centraliza todos os textos */
+            text-align: center;
         }
 
         th,
@@ -103,18 +103,13 @@
         }
 
         thead th {
-            background-color: #320002; /* Vermelho escuro */
-            color: white; /* Cor do texto */
-            text-align: center; /* Centraliza o texto */
-            font-weight: bold; /* Texto em negrito */
-            text-transform: uppercase; /* Texto em maiúsculo */
-            padding: 15px; /* Espaçamento interno */
-            border: 1px solid #000; /* Borda mais definida */
-        }
-
-        thead tr {
-            background-color: #333;
+            background-color: #320002;
             color: white;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 15px;
+            border: 1px solid #000;
         }
 
         tbody tr:nth-child(odd) {
@@ -159,29 +154,18 @@
 
                 const text = await response.text();
 
-                // Extrair a tabela HTML da página
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(text, 'text/html');
-                const table = doc.querySelector('table'); // Localizar a tabela principal
+                const table = doc.querySelector('table');
 
                 if (table) {
-                    // Filtrar para remover linhas e colunas indesejadas
-                    const rows = table.querySelectorAll('tr');
-                    rows.forEach(row => {
-                        const cells = row.querySelectorAll('td, th');
-
-                        // Remover a primeira coluna (índice automático)
-                        if (cells.length > 0) {
-                            cells[0].remove();
-                        }
-
-                        // Verificar se a linha está vazia e, se estiver, removê-la
-                        if (row.innerText.trim() === "") {
-                            row.remove(); // Remove a linha completamente
-                        }
+                    const headers = table.querySelectorAll('thead th');
+                    headers.forEach(header => {
+                        header.style.backgroundColor = '#320002';
+                        header.style.color = 'white';
+                        header.style.textTransform = 'uppercase';
                     });
 
-                    // Atualizar o conteúdo da página com a tabela processada
                     document.getElementById('content').innerHTML = `<h2>Guia Task</h2>${table.outerHTML}`;
                 } else {
                     document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
@@ -210,4 +194,26 @@
                            <iframe 
                                src="https://www.twitch.tv/embed/avelar_rp/chat?parent=rubinot-plus.vercel.app&darkpopout=true" 
                                frameborder="0" 
-                               scrolling="
+                               scrolling="no" 
+                               height="550" 
+                               width="20%">
+                           </iframe>
+                       </div>
+                       <p>Assista à nossa live e interaja no chat ao lado!</p>`
+            };
+
+            if (section === 'task') {
+                loadTaskContentFromSpreadsheet();
+            } else {
+                document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
+            }
+
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+
+            button.classList.add('selected');
+        }
+    </script>
+</body>
+
+</html>
