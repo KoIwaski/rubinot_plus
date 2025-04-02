@@ -79,6 +79,7 @@
         .submenu {
             display: none;
             margin-top: 10px;
+            text-align: center;
         }
 
         .submenu button {
@@ -151,10 +152,10 @@
             <button onclick="loadTaskContentFromSpreadsheet('sala4')">Sala 4</button>
             <button onclick="loadTaskContentFromSpreadsheet('sala5')">Sala 5</button>
         </div>
-        <button onclick="showContent('experience', this)">Calculadora XP</button>
-        <button onclick="showContent('skill', this)">Calculadora Skill</button>
-        <button onclick="showContent('contact', this)">Contato</button>
-        <button onclick="showContent('live', this)">Live Sorteio</button>
+        <button onclick="showContent('experience')">Calculadora XP</button>
+        <button onclick="showContent('skill')">Calculadora Skill</button>
+        <button onclick="showContent('contact')">Contato</button>
+        <button onclick="showContent('live')">Live Sorteio</button>
     </nav>
 
     <div id="content">
@@ -220,7 +221,7 @@
             }
         }
 
-        function showContent(section, button) {
+        function showContent(section) {
             const content = {
                 experience: '<h2>Calculadora XP</h2><p>Calcule e acompanhe seus pontos de experiência acumulados.</p>',
                 skill: '<h2>Calculadora Skill</h2><p>Descubra e gerencie suas habilidades.</p>',
@@ -231,4 +232,15 @@
                                src="https://player.twitch.tv/?channel=avelar_rp&parent=rubinot-plus.vercel.app" 
                                frameborder="0" 
                                allowfullscreen="true" 
-                               scrolling="no"
+                               scrolling="no" 
+                               height="550" 
+                               width="80%">
+                           </iframe>
+                           <iframe 
+                               src="https://www.twitch.tv/embed/avelar_rp/chat?parent=rubinot-plus.vercel.app&darkpopout=true" 
+                               frameborder="0" 
+                               scrolling="no" 
+                               height="550" 
+                               width="20%">
+                           </iframe>
+                       </
