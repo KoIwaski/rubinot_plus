@@ -174,20 +174,18 @@ async function loadTaskContentFromSpreadsheet() {
         const table = doc.querySelector('table');
 
         if (table) {
-            const rows = table.querySelectorAll('tbody tr');
+            // Renderizar a tabela no conteúdo da página sem alterações
+            document.getElementById('content').innerHTML = `<h2>Guia de Tarefas - Sala 01</h2>${table.outerHTML}`;
+        } else {
+            document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
+        }
+    } catch (error) {
+        console.error('Erro ao carregar a planilha:', error);
+        document.getElementById('content').innerHTML = '<p>Erro ao carregar a Guia Task.</p>';
+    }
+}
 
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('td');
-
-                // Garantir que as colunas 7 e 8 existam
-                if (cells[6] && cells[7]) {
-                    const text = cells[6].textContent.trim(); // Conteúdo da coluna 7
-                    const link = cells[7].textContent.trim(); // Conteúdo da coluna 8
-                    
-                    // Transformar texto da coluna 8 em hyperlink com nova cor
-                    cells[7].innerHTML = `<a href="${link}" target="_blank" style="color: #FFD700; text-decoration: none;">${link}</a>`;
-                }
-            });
+    );
 
             // Renderizar a tabela no conteúdo da página
             document.getElementById('content').innerHTML = `<h2>Guia de Tarefas - Sala 01</h2>${table.outerHTML}`;
