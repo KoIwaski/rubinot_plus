@@ -76,6 +76,29 @@
             color: black;
         }
 
+        .submenu {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .submenu button {
+            background: #444;
+            color: #FFFFFF;
+            padding: 5px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 400;
+            text-transform: none;
+            transition: all 0.3s ease;
+        }
+
+        .submenu button:hover {
+            background: #0080C0;
+        }
+
         #content {
             margin-top: 30px;
             padding: 20px;
@@ -122,11 +145,18 @@
     </header>
 
     <nav>
-        <button onclick="showContent('sala1', this)">Sala 1</button>
-        <button onclick="showContent('sala2', this)">Sala 2</button>
-        <button onclick="showContent('sala3', this)">Sala 3</button>
-        <button onclick="showContent('sala4', this)">Sala 4</button>
-        <button onclick="showContent('sala5', this)">Sala 5</button>
+        <button onclick="toggleSubmenu()">Guia Task</button>
+        <div class="submenu">
+            <button onclick="showContent('sala1')">Sala 1</button>
+            <button onclick="showContent('sala2')">Sala 2</button>
+            <button onclick="showContent('sala3')">Sala 3</button>
+            <button onclick="showContent('sala4')">Sala 4</button>
+            <button onclick="showContent('sala5')">Sala 5</button>
+        </div>
+        <button onclick="showContent('experience', this)">Calculadora XP</button>
+        <button onclick="showContent('skill', this)">Calculadora Skill</button>
+        <button onclick="showContent('contact', this)">Contato</button>
+        <button onclick="showContent('live', this)">Live Sorteio</button>
     </nav>
 
     <div id="content">
@@ -138,6 +168,11 @@
     </footer>
 
     <script>
+        function toggleSubmenu() {
+            const submenu = document.querySelector('.submenu');
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+
         async function loadTaskContentFromSpreadsheet(sala) {
             const spreadsheetLinks = {
                 sala1: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRp3F2DxIC6QMR-HlhW-lM_mrCHYoBGkgI8_hNlhahGQQUnRQzgI-Bs_epi81RBUy8TE78Q6JRbIepg/pubhtml?gid=0&single=true',
@@ -196,13 +231,8 @@
             }
         }
 
-        function showContent(sala, button) {
-            loadTaskContentFromSpreadsheet(sala);
-
-            const buttons = document.querySelectorAll('nav button');
-            buttons.forEach(btn => btn.classList.remove('selected'));
-
-            button.classList.add('selected');
+        function showContent(section) {
+            loadTaskContentFromSpreadsheet(section);
         }
     </script>
 </body>
