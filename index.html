@@ -96,6 +96,14 @@
             text-align: center;
         }
 
+        col.largura-grupo1 {
+            width: 15%;
+        }
+
+        col.largura-grupo2 {
+            width: 20%;
+        }
+
         th,
         td {
             padding: 10px;
@@ -153,7 +161,16 @@
                 const table = doc.querySelector('table');
 
                 if (table) {
-                    // Remover a primeira coluna de todas as linhas
+                    const colgroup = `<colgroup>
+                                      <col class="largura-grupo1">
+                                      <col class="largura-grupo1">
+                                      <col class="largura-grupo1">
+                                      <col class="largura-grupo2">
+                                      <col class="largura-grupo2">
+                                      <col class="largura-grupo2">
+                                  </colgroup>`;
+                    table.insertAdjacentHTML('afterbegin', colgroup);
+
                     const rows = table.querySelectorAll('tr');
                     rows.forEach(row => {
                         const cells = row.querySelectorAll('td, th');
@@ -166,7 +183,6 @@
                         }
                     });
 
-                    // Estilizar a primeira linha que contém dados
                     const firstDataRow = table.querySelector('tbody tr');
                     if (firstDataRow) {
                         firstDataRow.style.backgroundColor = '#320002';
