@@ -1,3 +1,5 @@
+
+
 1,Goblin,100,Goblin,"• 5.000 EXP X sua Rate
  • 10.000 Gold Coins",• 4.000 EXP X sua Rate
 2,Troll,100,"Troll, Swamp Troll, Frost Troll, Island Troll","• 7.000 EXP X sua Rate
