@@ -103,13 +103,7 @@
         }
 
         td {
-            font-size: 14px;
-        }
-
-        iframe {
-            width: 100%;
-            height: 200px;
-            border: none;
+            font-size: 14px; /* Reduz o tamanho da fonte dos dados */
         }
 
         tbody tr:nth-child(odd) {
@@ -159,6 +153,7 @@
                 const table = doc.querySelector('table');
 
                 if (table) {
+                    // Remover a primeira coluna de todas as linhas
                     const rows = table.querySelectorAll('tr');
                     rows.forEach(row => {
                         const cells = row.querySelectorAll('td, th');
@@ -171,16 +166,7 @@
                         }
                     });
 
-                    // Transformar links de YouTube em players de vídeo
-                    const videoSupportColumn = table.querySelectorAll('tbody tr td:nth-child(3)'); // Supondo que seja a terceira coluna
-                    videoSupportColumn.forEach(cell => {
-                        const videoUrl = cell.textContent.trim(); // Obtem o link do YouTube
-                        const videoId = new URL(videoUrl).searchParams.get('v'); // Extrai o ID do vídeo
-                        if (videoId) {
-                            cell.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
-                        }
-                    });
-
+                    // Estilizar a primeira linha que contém dados
                     const firstDataRow = table.querySelector('tbody tr');
                     if (firstDataRow) {
                         firstDataRow.style.backgroundColor = '#320002';
@@ -230,4 +216,12 @@
                 document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
             }
 
-            const buttons =
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+
+            button.classList.add('selected');
+        }
+    </script>
+</body>
+
+</html>
