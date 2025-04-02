@@ -103,10 +103,11 @@
         }
 
         thead th {
-            background-color: red; /* Fundo vermelho para o título da tabela */
-            color: white; /* Cor do texto para contraste */
+            background-color: #320002; /* Vermelho escuro */
+            color: white; /* Cor do texto */
             text-align: center; /* Centraliza o texto */
             font-weight: bold; /* Texto em negrito */
+            text-transform: uppercase; /* Texto em maiúsculo */
             padding: 15px; /* Espaçamento interno */
             border: 1px solid #000; /* Borda mais definida */
         }
@@ -209,26 +210,4 @@
                            <iframe 
                                src="https://www.twitch.tv/embed/avelar_rp/chat?parent=rubinot-plus.vercel.app&darkpopout=true" 
                                frameborder="0" 
-                               scrolling="no" 
-                               height="550" 
-                               width="20%">
-                           </iframe>
-                       </div>
-                       <p>Assista à nossa live e interaja no chat ao lado!</p>`
-            };
-
-            // Atualizar conteúdo
-            if (section === 'task') {
-                loadTaskContentFromSpreadsheet(); // Carregar conteúdo da planilha
-            } else {
-                document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
-            }
-
-            // Remover classe 'selected' de todos os botões
-            const buttons = document.querySelectorAll('nav button');
-            buttons.forEach(btn => btn.classList.remove('selected'));
-
-            // Adicionar classe 'selected' ao botão clicado
-            button.classList.add('selected');
-        }
-    </script>
+                               scrolling="
