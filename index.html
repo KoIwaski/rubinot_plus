@@ -26,6 +26,7 @@
             background-size: cover;
             color: #FFFFFF;
             text-align: center;
+            overflow: hidden; /* Impede o scroll para manter tudo fixo */
         }
 
         header {
@@ -34,6 +35,7 @@
             left: 0;
             width: 100%;
             background: none;
+            z-index: 10; /* Garante que o header esteja sobre outros elementos */
         }
 
         header img {
@@ -47,6 +49,7 @@
             top: 220px; /* Ajuste para posicionar abaixo do header */
             left: 50%;
             transform: translateX(-50%);
+            z-index: 9; /* Mantém os botões fixos visíveis */
         }
 
         nav button {
@@ -55,7 +58,6 @@
             color: #FFFFFF;
             width: 150px; /* Largura fixa */
             height: 50px; /* Altura fixa */
-            padding: 10px;
             margin: 10px;
             border: none;
             border-radius: 5px;
@@ -86,17 +88,21 @@
         }
 
         #content {
-            margin-top: 300px; /* Ajuste para não sobrepor o header e nav */
+            margin-top: 300px; /* Espaçamento após header e nav */
             padding: 20px;
             background: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
         }
 
         footer {
-            margin-top: 50px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             padding: 20px;
             color: #666666;
             background: rgba(0, 0, 0, 0.5);
+            z-index: 8;
         }
 
         table {
@@ -221,5 +227,4 @@
                                src="https://player.twitch.tv/?channel=avelar_rp&parent=rubinot-plus.vercel.app" 
                                frameborder="0" 
                                allowfullscreen="true" 
-                               scrolling="no" 
-                               height="550" 
+                               scrolling
