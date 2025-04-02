@@ -43,26 +43,30 @@
             margin-top: 20px;
         }
 
-        nav button {
-            display: inline-block;
-            background: #320002;
-            color: #FFFFFF;
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background 0.3s;
-        }
+nav button {
+    display: inline-block;
+    background: #320002;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease; /* Suavidade na transição */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para efeito 3D */
+}
 
-        nav button.selected {
-            background: #FFA500;
-        }
+nav button:hover {
+    background: #0080C0;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7); /* Sombra reduzida ao passar o mouse */
+}
 
-        nav button:hover {
-            background: #0080C0;
-        }
+nav button:active {
+    transform: translateY(2px); /* Botão "afunda" ao clicar */
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9); /* Intensidade da sombra ao pressionar */
+}
+
 
         #content {
             margin-top: 30px;
