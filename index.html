@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="icone_pagina.png" type="image/x-icon">
-        <link rel="shortcut icon" href="icone_pagina.png" type="image/x-icon">
+    <link rel="icon" href="icone_pagina.png" type="image/x-icon">
+    <link rel="shortcut icon" href="icone_pagina.png" type="image/x-icon">
     <title>Rubinot+</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -43,36 +43,33 @@
             margin-top: 20px;
         }
 
-nav button {
-    display: inline-block;
-    background: #320002;
-    color: #FFFFFF;
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em; /* Tamanho de fonte mais moderado */
-    font-weight: 500; /* Espessura intermediária */
-    font-family: 'Roboto Mono', monospace; /* Fonte consistente com o restante do site */
-    text-transform: none; /* Mantém o texto no formato original */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* Sombra mais sutil */
-    transition: all 0.3s ease;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-}
+        nav button {
+            display: inline-block;
+            background: #320002;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            font-family: 'Roboto Mono', monospace;
+            text-transform: none;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+        }
 
+        nav button:hover {
+            background: #0080C0;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        }
 
-
-nav button:hover {
-    background: #0080C0;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7); /* Sombra reduzida ao passar o mouse */
-}
-
-nav button:active {
-    transform: translateY(2px); /* Botão "afunda" ao clicar */
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9); /* Intensidade da sombra ao pressionar */
-}
-
+        nav button:active {
+            transform: translateY(2px);
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+        }
 
         #content {
             margin-top: 30px;
@@ -91,13 +88,22 @@ nav button:active {
         table {
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
+            text-align: center; /* Centraliza todos os textos */
         }
 
         th,
         td {
             padding: 10px;
             border: 1px solid #666;
+        }
+
+        thead th {
+            background-color: red; /* Fundo vermelho para o título da tabela */
+            color: white; /* Cor do texto para contraste */
+            text-align: center; /* Centraliza o texto */
+            font-weight: bold; /* Texto em negrito */
+            padding: 15px; /* Espaçamento interno */
+            border: 1px solid #000; /* Borda mais definida */
         }
 
         thead tr {
@@ -136,91 +142,91 @@ nav button:active {
         &copy; 2025 Projeto
     </footer>
 
-<script>
-    async function loadTaskContentFromSpreadsheet() {
-        try {
-            const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRp3F2DxIC6QMR-HlhW-lM_mrCHYoBGkgI8_hNlhahGQQUnRQzgI-Bs_epi81RBUy8TE78Q6JRbIepg/pubhtml?gid=0&single=true');
-            
-            if (!response.ok) {
-                throw new Error(`Erro ao acessar a URL: ${response.statusText}`);
+    <script>
+        async function loadTaskContentFromSpreadsheet() {
+            try {
+                const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRp3F2DxIC6QMR-HlhW-lM_mrCHYoBGkgI8_hNlhahGQQUnRQzgI-Bs_epi81RBUy8TE78Q6JRbIepg/pubhtml?gid=0&single=true');
+
+                if (!response.ok) {
+                    throw new Error(`Erro ao acessar a URL: ${response.statusText}`);
+                }
+
+                const text = await response.text();
+
+                // Extrair a tabela HTML da página
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const table = doc.querySelector('table'); // Localizar a tabela principal
+
+                if (table) {
+                    // Filtrar para remover linhas e colunas indesejadas
+                    const rows = table.querySelectorAll('tr');
+                    rows.forEach(row => {
+                        const cells = row.querySelectorAll('td, th');
+
+                        // Remover a primeira coluna (índice automático)
+                        if (cells.length > 0) {
+                            cells[0].remove();
+                        }
+
+                        // Verificar se a linha está vazia e, se estiver, removê-la
+                        if (row.innerText.trim() === "") {
+                            row.remove(); // Remove a linha completamente
+                        }
+                    });
+
+                    // Atualizar o conteúdo da página com a tabela processada
+                    document.getElementById('content').innerHTML = `<h2>Guia Task</h2>${table.outerHTML}`;
+                } else {
+                    document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
+                }
+            } catch (error) {
+                console.error('Erro ao carregar a planilha:', error);
+                document.getElementById('content').innerHTML = '<p>Erro ao carregar a Guia Task.</p>';
             }
-            
-            const text = await response.text();
+        }
 
-            // Extrair a tabela HTML da página
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, 'text/html');
-            const table = doc.querySelector('table'); // Localizar a tabela principal
+        function showContent(section, button) {
+            const content = {
+                experience: '<h2>Calculadora XP</h2><p>Calcule e acompanhe seus pontos de experiência acumulados.</p>',
+                skill: '<h2>Calculadora Skill</h2><p>Descubra e gerencie suas habilidades.</p>',
+                contact: '<h2>Contato</h2><p>Entre em contato conosco para mais informações.</p>',
+                live: `<h2>Live Sorteio</h2>
+                       <div style="display: flex; flex-wrap: wrap;">
+                           <iframe 
+                               src="https://player.twitch.tv/?channel=avelar_rp&parent=rubinot-plus.vercel.app" 
+                               frameborder="0" 
+                               allowfullscreen="true" 
+                               scrolling="no" 
+                               height="550" 
+                               width="80%">
+                           </iframe>
+                           <iframe 
+                               src="https://www.twitch.tv/embed/avelar_rp/chat?parent=rubinot-plus.vercel.app&darkpopout=true" 
+                               frameborder="0" 
+                               scrolling="no" 
+                               height="550" 
+                               width="20%">
+                           </iframe>
+                       </div>
+                       <p>Assista à nossa live e interaja no chat ao lado!</p>`
+            };
 
-            if (table) {
-                // Filtrar para remover linhas e colunas indesejadas
-                const rows = table.querySelectorAll('tr');
-                rows.forEach(row => {
-                    const cells = row.querySelectorAll('td, th');
-                    
-                    // Remover a primeira coluna (índice automático)
-                    if (cells.length > 0) {
-                        cells[0].remove();
-                    }
-
-                    // Verificar se a linha está vazia e, se estiver, removê-la
-                    if (row.innerText.trim() === "") {
-                        row.remove(); // Remove a linha completamente
-                    }
-                });
-
-                // Atualizar o conteúdo da página com a tabela processada
-                document.getElementById('content').innerHTML = `<h2>Guia Task</h2>${table.outerHTML}`;
+            // Atualizar conteúdo
+            if (section === 'task') {
+                loadTaskContentFromSpreadsheet(); // Carregar conteúdo da planilha
             } else {
-                document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
+                document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
             }
-        } catch (error) {
-            console.error('Erro ao carregar a planilha:', error);
-            document.getElementById('content').innerHTML = '<p>Erro ao carregar a Guia Task.</p>';
+
+            // Remover classe 'selected' de todos os botões
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+
+            // Adicionar classe 'selected' ao botão clicado
+            button.classList.add('selected');
         }
-    }
-
-    function showContent(section, button) {
-        const content = {
-            experience: '<h2>Calculadora XP</h2><p>Calcule e acompanhe seus pontos de experiência acumulados.</p>',
-            skill: '<h2>Calculadora Skill</h2><p>Descubra e gerencie suas habilidades.</p>',
-            contact: '<h2>Contato</h2><p>Entre em contato conosco para mais informações.</p>',
-            live: `<h2>Live Sorteio</h2>
-                   <div style="display: flex; flex-wrap: wrap;">
-                       <iframe 
-                           src="https://player.twitch.tv/?channel=avelar_rp&parent=rubinot-plus.vercel.app" 
-                           frameborder="0" 
-                           allowfullscreen="true" 
-                           scrolling="no" 
-                           height="550" 
-                           width="80%">
-                       </iframe>
-                       <iframe 
-                           src="https://www.twitch.tv/embed/avelar_rp/chat?parent=rubinot-plus.vercel.app&darkpopout=true" 
-                           frameborder="0" 
-                           scrolling="no" 
-                           height="550" 
-                           width="20%">
-                       </iframe>
-                   </div>
-                   <p>Assista à nossa live e interaja no chat ao lado!</p>`
-        };
-
-        // Atualizar conteúdo
-        if (section === 'task') {
-            loadTaskContentFromSpreadsheet(); // Carregar conteúdo da planilha
-        } else {
-            document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
-        }
-
-        // Remover classe 'selected' de todos os botões
-        const buttons = document.querySelectorAll('nav button');
-        buttons.forEach(btn => btn.classList.remove('selected'));
-
-        // Adicionar classe 'selected' ao botão clicado
-        button.classList.add('selected');
-    }
-</script>
+    </script>
 </body>
 
 </html>
