@@ -171,10 +171,11 @@
                         }
                     });
 
-                    // Adicionar vídeos na coluna "Vídeo Suport"
+                    // Transformar links de YouTube em players de vídeo
                     const videoSupportColumn = table.querySelectorAll('tbody tr td:nth-child(3)'); // Supondo que seja a terceira coluna
                     videoSupportColumn.forEach(cell => {
-                        const videoId = cell.textContent.trim(); // ID do vídeo
+                        const videoUrl = cell.textContent.trim(); // Obtem o link do YouTube
+                        const videoId = new URL(videoUrl).searchParams.get('v'); // Extrai o ID do vídeo
                         if (videoId) {
                             cell.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
                         }
@@ -229,12 +230,4 @@
                 document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
             }
 
-            const buttons = document.querySelectorAll('nav button');
-            buttons.forEach(btn => btn.classList.remove('selected'));
-
-            button.classList.add('selected');
-        }
-    </script>
-</body>
-
-</html>
+            const buttons =
