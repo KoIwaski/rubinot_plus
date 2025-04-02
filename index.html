@@ -128,6 +128,11 @@
     async function loadTaskContentFromSpreadsheet() {
         try {
             const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRp3F2DxIC6QMR-HlhW-lM_mrCHYoBGkgI8_hNlhahGQQUnRQzgI-Bs_epi81RBUy8TE78Q6JRbIepg/pubhtml?gid=0&single=true');
+            
+            if (!response.ok) {
+                throw new Error(`Erro ao acessar a URL: ${response.statusText}`);
+            }
+            
             const text = await response.text();
 
             // Extrair a tabela HTML da página
@@ -136,16 +141,16 @@
             const table = doc.querySelector('table'); // Localizar a tabela principal
 
             if (table) {
-                // Filtrar para remover a coluna de números das linhas (gerada automaticamente pelo Google Sheets)
+                // Remover a primeira coluna (índice) de todas as linhas
                 const rows = table.querySelectorAll('tr');
                 rows.forEach(row => {
                     const cells = row.querySelectorAll('td, th');
-                    if (cells.length > 0 && cells[0].innerText.trim() === "") {
-                        cells[0].remove(); // Remove a célula da primeira coluna (números das linhas)
+                    if (cells.length > 0) {
+                        cells[0].remove(); // Remove a primeira célula de cada linha
                     }
                 });
 
-                // Atualizar o conteúdo da página com a tabela
+                // Atualizar o conteúdo da página com a tabela processada
                 document.getElementById('content').innerHTML = `<h2>Guia Task</h2>${table.outerHTML}`;
             } else {
                 document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
