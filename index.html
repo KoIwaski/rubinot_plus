@@ -79,20 +79,17 @@
         .submenu {
             display: none;
             margin-top: 10px;
-            text-align: center;
         }
 
         .submenu button {
             background: #444;
             color: #FFFFFF;
-            padding: 5px 15px;
+            padding: 8px 15px;
             margin: 5px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 0.9em;
-            font-weight: 400;
-            text-transform: none;
             transition: all 0.3s ease;
         }
 
@@ -148,11 +145,11 @@
     <nav>
         <button onclick="toggleSubmenu()">Guia Task</button>
         <div class="submenu">
-            <button onclick="showContent('sala1')">Sala 1</button>
-            <button onclick="showContent('sala2')">Sala 2</button>
-            <button onclick="showContent('sala3')">Sala 3</button>
-            <button onclick="showContent('sala4')">Sala 4</button>
-            <button onclick="showContent('sala5')">Sala 5</button>
+            <button onclick="loadTaskContentFromSpreadsheet('sala1')">Sala 1</button>
+            <button onclick="loadTaskContentFromSpreadsheet('sala2')">Sala 2</button>
+            <button onclick="loadTaskContentFromSpreadsheet('sala3')">Sala 3</button>
+            <button onclick="loadTaskContentFromSpreadsheet('sala4')">Sala 4</button>
+            <button onclick="loadTaskContentFromSpreadsheet('sala5')">Sala 5</button>
         </div>
         <button onclick="showContent('experience', this)">Calculadora XP</button>
         <button onclick="showContent('skill', this)">Calculadora Skill</button>
@@ -213,13 +210,6 @@
                         }
                     });
 
-                    const firstDataRow = table.querySelector('tbody tr');
-                    if (firstDataRow) {
-                        firstDataRow.style.backgroundColor = '#320002';
-                        firstDataRow.style.color = 'white';
-                        firstDataRow.style.fontWeight = 'bold';
-                    }
-
                     document.getElementById('content').innerHTML = `<h2>${sala.toUpperCase()}</h2>${table.outerHTML}`;
                 } else {
                     document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
@@ -230,10 +220,15 @@
             }
         }
 
-        function showContent(section) {
-            loadTaskContentFromSpreadsheet(section);
-        }
-    </script>
-</body>
-
-</html>
+        function showContent(section, button) {
+            const content = {
+                experience: '<h2>Calculadora XP</h2><p>Calcule e acompanhe seus pontos de experiência acumulados.</p>',
+                skill: '<h2>Calculadora Skill</h2><p>Descubra e gerencie suas habilidades.</p>',
+                contact: '<h2>Contato</h2><p>Entre em contato conosco para mais informações.</p>',
+                live: `<h2>Live Sorteio</h2>
+                       <div style="display: flex; flex-wrap: wrap;">
+                           <iframe 
+                               src="https://player.twitch.tv/?channel=avelar_rp&parent=rubinot-plus.vercel.app" 
+                               frameborder="0" 
+                               allowfullscreen="true" 
+                               scrolling="no"
