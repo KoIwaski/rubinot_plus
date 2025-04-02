@@ -79,6 +79,7 @@
         .submenu {
             display: none;
             margin-top: 10px;
+            text-align: center;
         }
 
         .submenu button {
@@ -176,10 +177,10 @@
         async function loadTaskContentFromSpreadsheet(sala) {
             const spreadsheetLinks = {
                 sala1: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRp3F2DxIC6QMR-HlhW-lM_mrCHYoBGkgI8_hNlhahGQQUnRQzgI-Bs_epi81RBUy8TE78Q6JRbIepg/pubhtml?gid=0&single=true',
-                sala2: 'LINK_SALA_2', // Substitua pelo link correto da Sala 2
-                sala3: 'LINK_SALA_3', // Substitua pelo link correto da Sala 3
-                sala4: 'LINK_SALA_4', // Substitua pelo link correto da Sala 4
-                sala5: 'LINK_SALA_5'  // Substitua pelo link correto da Sala 5
+                sala2: 'LINK_SALA_2',
+                sala3: 'LINK_SALA_3',
+                sala4: 'LINK_SALA_4',
+                sala5: 'LINK_SALA_5'
             };
 
             const url = spreadsheetLinks[sala];
@@ -196,7 +197,6 @@
                 }
 
                 const text = await response.text();
-
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(text, 'text/html');
                 const table = doc.querySelector('table');
@@ -206,11 +206,10 @@
                     rows.forEach(row => {
                         const cells = row.querySelectorAll('td, th');
                         if (cells.length > 0) {
-                            cells[0].remove(); // Remove a primeira célula
+                            cells[0].remove();
                         }
-
                         if (!row.innerText.trim()) {
-                            row.remove(); // Remove linhas vazias
+                            row.remove();
                         }
                     });
 
