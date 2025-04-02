@@ -149,9 +149,14 @@
                 const table = doc.querySelector('table');
 
                 if (table) {
-                    // Remover as linhas vazias
+                    // Remover a primeira coluna de todas as linhas
                     const rows = table.querySelectorAll('tr');
                     rows.forEach(row => {
+                        const cells = row.querySelectorAll('td, th');
+                        if (cells.length > 0) {
+                            cells[0].remove(); // Remove a primeira célula
+                        }
+
                         if (!row.innerText.trim()) {
                             row.remove(); // Remove linhas vazias
                         }
