@@ -93,15 +93,15 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            text-align: center;
+            text-align: center; /* Centraliza todas as colunas */
         }
 
         col.largura-grupo1 {
-            width: 15%;
+            width: 7%;
         }
 
         col.largura-grupo2 {
-            width: 20%;
+            width: 18%;
         }
 
         th,
@@ -112,10 +112,7 @@
 
         td {
             font-size: 14px; /* Reduz o tamanho da fonte dos dados */
-        }
-
-        td.monster {
-            text-align: center; /* Centraliza o texto na coluna "Monster" */
+            text-align: center; /* Centraliza o conteúdo das células */
         }
 
         tbody tr:nth-child(odd) {
@@ -169,7 +166,7 @@
                                       <col class="largura-grupo1">
                                       <col class="largura-grupo1">
                                       <col class="largura-grupo1">
-                                      <col class="largura-grupo2">
+                                      <col class="largura-grupo1">
                                       <col class="largura-grupo2">
                                       <col class="largura-grupo2">
                                   </colgroup>`;
