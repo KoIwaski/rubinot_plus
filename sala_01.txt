@@ -1,18 +1,17 @@
-22,Troll,100,"Troll, Swamp Troll, Frost Troll, Island Troll","• 7.000 EXP X sua Rate
-1,Goblin,100,Goblin,"• 5.000 EXP X sua Rate
+01,Goblin,100,Goblin,"• 5.000 EXP X sua Rate
  • 10.000 Gold Coins",• 4.000 EXP X sua Rate
-2,Troll,100,"Troll, Swamp Troll, Frost Troll, Island Troll","• 7.000 EXP X sua Rate
+02,Troll,100,"Troll, Swamp Troll, Frost Troll, Island Troll","• 7.000 EXP X sua Rate
  • 10.000 Gold Coins",• 5.000 EXP X sua Rate
-3,Rotworm,200,"Rotworm, Carrion Worm","• 10.000 EXP X sua Rate
+03,Rotworm,200,"Rotworm, Carrion Worm","• 10.000 EXP X sua Rate
  • 20.000 Gold Coins",• 10.000 Gold Coins
-4,Minotaur,200,"Minotaur, Minotaur Archer, Minotaur Guard, Minotaur Mage",• 15.000 EXP X sua Rate,• 11.000 EXP X sua Rate
-5,Dwarf,300,"Dwarf, Dwarf Soldier, Dwarf Guard, Dwarf Geomancer",• Exercise Weapon (5.000 Charges),• 13.000 EXP X sua Rate
-6,Dworcs,300,"Dworc Venomsniper, Dworc Voodoomaster, Dworc Fleshhunter",• 50.000 Gold Coins,• 20.000 Gold Coins
-7,Elf,400,"Elf, Elf Scout, Elf Arcanist","• 25.000 EXP X sua Rate
+04,Minotaur,200,"Minotaur, Minotaur Archer, Minotaur Guard, Minotaur Mage",• 15.000 EXP X sua Rate,• 11.000 EXP X sua Rate
+05,Dwarf,300,"Dwarf, Dwarf Soldier, Dwarf Guard, Dwarf Geomancer",• Exercise Weapon (5.000 Charges),• 13.000 EXP X sua Rate
+06,Dworcs,300,"Dworc Venomsniper, Dworc Voodoomaster, Dworc Fleshhunter",• 50.000 Gold Coins,• 20.000 Gold Coins
+07,Elf,400,"Elf, Elf Scout, Elf Arcanist","• 25.000 EXP X sua Rate
  • 40.000 Gold Coins",• 17.000 EXP X sua Rate
-8,Dark Cathedral,400,"Dark Apprentice, Dark Magician, Dark Monk, Assassin","• 25.000 EXP X sua Rate
+08,Dark Cathedral,400,"Dark Apprentice, Dark Magician, Dark Monk, Assassin","• 25.000 EXP X sua Rate
  • 50.000 Gold Coins",• 20.000 EXP X sua Rate
-9,Tombs,800,"Ghost, Mummy, Ghoul, Demon Skeleton, Skeleton, Crypt Shambler",• 5x Prey Cards,• 30.000 EXP X sua Rate
+09,Tombs,800,"Ghost, Mummy, Ghoul, Demon Skeleton, Skeleton, Crypt Shambler",• 5x Prey Cards,• 30.000 EXP X sua Rate
 10,Scarab,600,Scarab,"• 30.000 EXP X sua Rate
  • 50.000 Gold Coins",• 22.000 EXP X sua Rate
 11,Cyclops,500,"Cyclops, Cyclops Smith, Cyclops Drone","• 35.000 EXP X sua Rate
