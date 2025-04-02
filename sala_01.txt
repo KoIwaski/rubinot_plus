@@ -1,0 +1,33 @@
+Task number,Task Name,Amount,Creatures,Rewards,Refazer
+1,Goblin,100,Goblin,"• 5.000 EXP X sua Rate
+ • 10.000 Gold Coins",• 4.000 EXP X sua Rate
+2,Troll,100,"Troll, Swamp Troll, Frost Troll, Island Troll","• 7.000 EXP X sua Rate
+ • 10.000 Gold Coins",• 5.000 EXP X sua Rate
+3,Rotworm,200,"Rotworm, Carrion Worm","• 10.000 EXP X sua Rate
+ • 20.000 Gold Coins",• 10.000 Gold Coins
+4,Minotaur,200,"Minotaur, Minotaur Archer, Minotaur Guard, Minotaur Mage",• 15.000 EXP X sua Rate,• 11.000 EXP X sua Rate
+5,Dwarf,300,"Dwarf, Dwarf Soldier, Dwarf Guard, Dwarf Geomancer",• Exercise Weapon (5.000 Charges),• 13.000 EXP X sua Rate
+6,Dworcs,300,"Dworc Venomsniper, Dworc Voodoomaster, Dworc Fleshhunter",• 50.000 Gold Coins,• 20.000 Gold Coins
+7,Elf,400,"Elf, Elf Scout, Elf Arcanist","• 25.000 EXP X sua Rate
+ • 40.000 Gold Coins",• 17.000 EXP X sua Rate
+8,Dark Cathedral,400,"Dark Apprentice, Dark Magician, Dark Monk, Assassin","• 25.000 EXP X sua Rate
+ • 50.000 Gold Coins",• 20.000 EXP X sua Rate
+9,Tombs,800,"Ghost, Mummy, Ghoul, Demon Skeleton, Skeleton, Crypt Shambler",• 5x Prey Cards,• 30.000 EXP X sua Rate
+10,Scarab,600,Scarab,"• 30.000 EXP X sua Rate
+ • 50.000 Gold Coins",• 22.000 EXP X sua Rate
+11,Cyclops,500,"Cyclops, Cyclops Smith, Cyclops Drone","• 35.000 EXP X sua Rate
+ • 60.000 Gold Coins",• 25.000 EXP X sua Rate
+12,Mutated Humans,600,Mutated Human,• 50.000 EXP X sua Rate,• 40.000 EXP X sua Rate
+13,Coryms,400,"Corym Charlatan, Corym Skirmisher, Corym Vanguard","• 70.000 EXP X sua Rate
+ • 60.000 Gold Coins",• 50.000 EXP X sua Rate
+14,Banuta Surface,500,"Kongra, Sibang, Merklin",• 100.000 Gold Coins,• 70.000 Gold Coins
+15,Pirates,700,"Pirate Marauder, Pirate Cutthroat, Pirate Corsair, Pirate Buccaneer",• Exercise Weapon (8.000 Charges),"• Random Item: Brutus Bloodbeard's Hat, The Lethal Lissy's Shirt, Ron The Ripper's Sabre, Deadeye Devious' Eye Patch"
+16,Barbarians,700,"Barbarian Bloodwalker, Barbarian Brutetamer, Barbarian Headsplitter, Barbarian Skullhunter","• 200.000 EXP X sua Rate
+ • 5x Shard","• 100.000 EXP X sua Rate
+ • 1x Shard"
+17,Djinn,700,"Marid, Efreet, Green Djinn, Blue Djinn",• 250.000 EXP X sua Rate,• 150.000 EXP X sua Rate
+18,Stonerefiner,500,Stonerefiner,"• 300.000 EXP X sua Rate
+ • 150.000 Gold Coins",• 200.000 EXP X sua Rate
+19,Dragon,800,"Dragon, Dragon Hatchling",• 400.000 EXP X sua Rate,• 300.000 EXP X sua Rate
+20,Oramond,1000,"Minotaur Hunter, Mooh Tah Warrior, Minotaur Amazon, Worm Priestess, Execowtioner, Moohtant","• 800.000 EXP X sua Rate
+ • Exercise Weapon (10.000 Charges)",• 1.000.000 EXP X sua Rate
