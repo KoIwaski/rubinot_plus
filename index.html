@@ -174,25 +174,30 @@
             const table = doc.querySelector('table');
 
             if (table) {
+                // Processar as linhas da tabela
                 const rows = table.querySelectorAll('tr');
                 rows.forEach((row, index) => {
                     const cells = row.querySelectorAll('td, th');
 
-                    // Substituir apenas as células da oitava coluna
+                    // Alterar apenas as linhas de dados (ignorando cabeçalhos)
                     if (index > 0 && cells.length >= 8) {
                         const videoCell = cells[7]; // Oitava coluna (Video Suport)
                         const videoLink = videoCell.textContent.trim();
 
                         if (videoLink && videoLink.startsWith("http")) {
+                            // Substituir o conteúdo da célula pelo botão de imagem
                             videoCell.innerHTML = `
                                 <a href="${videoLink}" target="_blank">
                                     <img src="youtube.png" alt="YouTube Video" style="width: 50px; height: auto; display: block; margin: auto;">
                                 </a>`;
+                        } else {
+                            // Se não houver link válido, mostrar uma mensagem de placeholder
+                            videoCell.innerHTML = `<span style="color: red;">Sem vídeo</span>`;
                         }
                     }
                 });
 
-                // Renderizar tabela ajustada no conteúdo principal
+                // Renderizar a tabela ajustada no conteúdo principal
                 document.getElementById('content').innerHTML = `<h2>Guia de Tarefas - Sala 01</h2>${table.outerHTML}`;
             } else {
                 document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
