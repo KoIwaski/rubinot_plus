@@ -160,10 +160,10 @@
     </footer>
 
 <script>
-  async function loadTaskContentFromSpreadsheet() {
+async function loadTaskContentFromSpreadsheet() {
     try {
         const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRp3F2DxIC6QMR-HlhW-lM_mrCHYoBGkgI8_hNlhahGQQUnRQzgI-Bs_epi81RBUy8TE78Q6JRbIepg/pubhtml?gid=0&single=true');
-        
+
         if (!response.ok) {
             throw new Error(`Erro ao acessar a URL: ${response.statusText}`);
         }
@@ -174,27 +174,25 @@
         const table = doc.querySelector('table');
 
         if (table) {
-            // Adicionar uma nova coluna no cabeçalho
-            const headerRow = table.querySelector('thead tr');
-            if (headerRow) {
-                const newHeader = document.createElement('th');
-                newHeader.textContent = 'Vídeo';
-                headerRow.appendChild(newHeader);
-            }
+            const rows = table.querySelectorAll('tr');
 
-            // Processar cada linha da tabela e adicionar a imagem clicável
-            const rows = table.querySelectorAll('tbody tr');
             rows.forEach((row, index) => {
                 const cells = row.querySelectorAll('td, th');
 
-                if (index >= 0 && cells.length >= 8) {
-                    const videoCell = cells[7]; // Oitava coluna (coluna do link do YouTube)
+                if (index === 0) {
+                    // Adiciona um novo cabeçalho para a coluna da imagem
+                    const newHeader = document.createElement('th');
+                    newHeader.textContent = 'Vídeo';
+                    row.appendChild(newHeader);
+                } else if (cells.length >= 8) {
+                    // Obtém o link do YouTube da 8ª coluna (índice 7)
+                    const videoCell = cells[7];
                     const videoLink = videoCell.textContent.trim();
 
-                    // Criar uma nova célula para a imagem
+                    // Cria uma nova célula para a imagem
                     const newCell = document.createElement('td');
 
-                    if (videoLink && videoLink.startsWith("http")) {
+                    if (videoLink.startsWith("http")) {
                         newCell.innerHTML = `
                             <a href="${videoLink}" target="_blank">
                                 <img src="youtube.png" alt="YouTube Video" style="width: 50px; height: auto; display: block; margin: auto;">
@@ -203,12 +201,11 @@
                         newCell.innerHTML = `<span style="color: red;">Sem vídeo</span>`;
                     }
 
-                    // Adicionar a nova célula à linha
                     row.appendChild(newCell);
                 }
             });
 
-            // Renderizar a tabela no conteúdo principal
+            // Insere a tabela modificada na página
             document.getElementById('content').innerHTML = `<h2>Guia de Tarefas - Sala 01</h2>${table.outerHTML}`;
         } else {
             document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
@@ -218,6 +215,7 @@
         document.getElementById('content').innerHTML = '<p>Erro ao carregar a Guia Task.</p>';
     }
 }
+
 </script>
 
 
