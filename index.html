@@ -160,30 +160,43 @@
     </footer>
 
 <script>
-    async function loadTaskContentFromSpreadsheet() {
-        try {
-            const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRp3F2DxIC6QMR-HlhW-lM_mrCHYoBGkgI8_hNlhahGQQUnRQzgI-Bs_epi81RBUy8TE78Q6JRbIepg/pubhtml?gid=0&single=true');
+async function loadTaskContentFromSpreadsheet() {
+    try {
+        const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRp3F2DxIC6QMR-HlhW-lM_mrCHYoBGkgI8_hNlhahGQQUnRQzgI-Bs_epi81RBUy8TE78Q6JRbIepg/pubhtml?gid=0&single=true');
 
-            if (!response.ok) {
-                throw new Error(`Erro ao acessar a URL: ${response.statusText}`);
-            }
-
-            const text = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, 'text/html');
-            const table = doc.querySelector('table');
-
-            if (table) {
-                // Renderizar a tabela exatamente como vem da planilha, sem alterações
-                document.getElementById('content').innerHTML = `<h2>Guia de Tarefas - Sala 01</h2>${table.outerHTML}`;
-            } else {
-                document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
-            }
-        } catch (error) {
-            console.error('Erro ao carregar a planilha:', error);
-            document.getElementById('content').innerHTML = '<p>Erro ao carregar a Guia Task.</p>';
+        if (!response.ok) {
+            throw new Error(`Erro ao acessar a URL: ${response.statusText}`);
         }
+
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const table = doc.querySelector('table');
+
+        if (table) {
+            // Iterar pelas linhas da tabela para adicionar links
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                
+                // Verifica se a coluna 8 e 9 existem
+                if (cells[7] && cells[8]) {
+                    const link = cells[8].textContent.trim(); // Obter o link da coluna 9
+                    const text = cells[7].textContent.trim(); // Obter o texto da coluna 8
+                    cells[7].innerHTML = `<a href="${link}" target="_blank">${text}</a>`; // Tornar a coluna 8 um link
+                    cells[8].style.display = 'none'; // Ocultar a coluna 9
+                }
+            });
+
+            document.getElementById('content').innerHTML = `<h2>Guia de Tarefas - Sala 01</h2>${table.outerHTML}`;
+        } else {
+            document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
+        }
+    } catch (error) {
+        console.error('Erro ao carregar a planilha:', error);
+        document.getElementById('content').innerHTML = '<p>Erro ao carregar a Guia Task.</p>';
     }
+}
 </script>
 
 
