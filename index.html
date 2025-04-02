@@ -93,21 +93,9 @@
          table {
              width: 100%;
              border-collapse: collapse;
-             text-align: center; /* Centraliza todas as colunas */
+             text-align: center;
          }
  
-         col.largura-grupo1 {
-             width: 7%;
-         }
- 
-         col.largura-grupo2 {
-             width: 18%;
-         }
- 
-         col.largura-grupo3 {
-             width: 4%;
-         }
-         
          th,
          td {
              padding: 10px;
@@ -116,7 +104,6 @@
  
          td {
              font-size: 14px; /* Reduz o tamanho da fonte dos dados */
-             text-align: center; /* Centraliza o conteúdo das células */
          }
  
          tbody tr:nth-child(odd) {
@@ -166,17 +153,7 @@
                  const table = doc.querySelector('table');
  
                  if (table) {
-                     const colgroup = `<colgroup>
-                                       <col class="largura-grupo1">
-                                       <col class="largura-grupo1">
-                                       <col class="largura-grupo3">
-                                       <col class="largura-grupo1">
-                                       <col class="largura-grupo1">
-                                       <col class="largura-grupo2">
-                                       <col class="largura-grupo2">
-                                   </colgroup>`;
-                     table.insertAdjacentHTML('afterbegin', colgroup);
- 
+                     // Remover a primeira coluna de todas as linhas
                      const rows = table.querySelectorAll('tr');
                      rows.forEach(row => {
                          const cells = row.querySelectorAll('td, th');
@@ -189,6 +166,7 @@
                          }
                      });
  
+                     // Estilizar a primeira linha que contém dados
                      const firstDataRow = table.querySelector('tbody tr');
                      if (firstDataRow) {
                          firstDataRow.style.backgroundColor = '#320002';
@@ -203,6 +181,41 @@
              } catch (error) {
                  console.error('Erro ao carregar a planilha:', error);
                  document.getElementById('content').innerHTML = '<p>Erro ao carregar a Guia Task.</p>';
+ <nav>
+     <button onclick="showContent('task', this)">Guia Task</button>
+ </nav>
+ 
+ <!-- Botões dentro de Guia Task -->
+ <div id="task-menu" style="display: none;">
+     <button onclick="loadTaskContentFromSpreadsheet()">Tabela Principal</button>
+     <button onclick="loadSala01ContentFromSpreadsheet()">Sala 01</button>
+ </div>
+ 
+ <div id="content">
+     <p>Bem-vindo! Escolha uma das opções acima.</p>
+ </div>
+ 
+ <script>
+     function showContent(section, button) {
+         if (section === 'task') {
+             document.getElementById('task-menu').style.display = 'block';
+             document.getElementById('content').innerHTML = '<p>Escolha uma opção dentro de Guia Task.</p>';
+         } else {
+             document.getElementById('task-menu').style.display = 'none';
+             document.getElementById('content').innerHTML = '<p>Conteúdo não encontrado.</p>';
+         }
+ 
+         const buttons = document.querySelectorAll('nav button');
+         buttons.forEach(btn => btn.classList.remove('selected'));
+         button.classList.add('selected');
+     }
+ 
+     async function loadSala01ContentFromSpreadsheet() {
+         try {
+             const response = await fetch('URL_DA_TABELA_SALA01'); // Insira a URL correta
+ 
+             if (!response.ok) {
+                 throw new Error(`Erro ao acessar a URL: ${response.statusText}`);
              }
          }
  
@@ -231,19 +244,31 @@
                         </div>
                         <p>Assista à nossa live e interaja no chat ao lado!</p>`
              };
+             const text = await response.text();
+             const parser = new DOMParser();
+             const doc = parser.parseFromString(text, 'text/html');
+             const table = doc.querySelector('table');
  
              if (section === 'task') {
                  loadTaskContentFromSpreadsheet();
+             if (table) {
+                 document.getElementById('content').innerHTML = `<h2>Sala 01</h2>${table.outerHTML}`;
              } else {
                  document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
+                 document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da Sala 01.</p>';
              }
  
              const buttons = document.querySelectorAll('nav button');
              buttons.forEach(btn => btn.classList.remove('selected'));
  
              button.classList.add('selected');
+         } catch (error) {
+             console.error('Erro ao carregar a tabela:', error);
+             document.getElementById('content').innerHTML = '<p>Erro ao carregar a Sala 01.</p>';
          }
      </script>
  </body>
  
  </html>
+     }
+ </script>
