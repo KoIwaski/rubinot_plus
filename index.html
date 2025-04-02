@@ -174,32 +174,26 @@ async function loadTaskContentFromSpreadsheet() {
         const table = doc.querySelector('table');
 
         if (table) {
-            // Criar uma nova tabela para manipular diretamente
-            const newTable = document.createElement('table');
-            newTable.innerHTML = `<colgroup>
-                <col class="largura-grupo1">
-                <col class="largura-grupo2">
-            </colgroup>`;
-            newTable.style.width = table.style.width || "100%";
-            newTable.style.borderCollapse = "collapse";
+            const rows = table.querySelectorAll('tbody tr');
 
-            // Obter todas as linhas da tabela original
-            const rows = table.querySelectorAll('tr');
-
-            rows.forEach((row, rowIndex) => {
-                const newRow = document.createElement('tr');
+            // Iterar pelas linhas e ajustar colunas
+            rows.forEach(row => {
                 const cells = row.querySelectorAll('td');
-                const colValuable = 'hidden;';
-                
-                // Verifica se a coluna 8 e 9 existem
+
+                // Garantir que as colunas 8 e 9 existam antes de prosseguir
                 if (cells[7] && cells[8]) {
-                    const link = cells[8].textContent.trim(); // Obter o link da coluna 9
-                    const text = cells[7].textContent.trim(); // Obter o texto da coluna 8
-                    cells[7].innerHTML = `<a href="${link}" target="_blank">${text}</a>`; // Tornar a coluna 8 um link
-                    cells[8].style.display = 'none'; // Ocultar a coluna 9
+                    const link = cells[8].textContent.trim(); // Conteúdo da coluna 9
+                    const text = cells[7].textContent.trim(); // Conteúdo da coluna 8
+
+                    // Transformar o texto da coluna 8 em um link clicável
+                    cells[7].innerHTML = `<a href="${link}" target="_blank" style="color: #FFD700; text-decoration: none;">${text}</a>`;
+
+                    // Ocultar a coluna 9
+                    cells[8].style.display = 'none';
                 }
             });
 
+            // Renderizar a tabela no conteúdo da página
             document.getElementById('content').innerHTML = `<h2>Guia de Tarefas - Sala 01</h2>${table.outerHTML}`;
         } else {
             document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
