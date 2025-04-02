@@ -178,9 +178,9 @@
                 rows.forEach((row, index) => {
                     const cells = row.querySelectorAll('td, th');
 
-                    // Substituir apenas as células de dados (ignorando cabeçalhos)
-                    if (index > 0 && cells.length > 0) {
-                        const videoCell = cells[cells.length - 1]; // Última coluna (Video Suport)
+                    // Substituir apenas as células da oitava coluna
+                    if (index > 0 && cells.length >= 8) {
+                        const videoCell = cells[7]; // Oitava coluna (Video Suport)
                         const videoLink = videoCell.textContent.trim();
 
                         if (videoLink && videoLink.startsWith("http")) {
@@ -193,7 +193,7 @@
                 });
 
                 // Renderizar tabela ajustada no conteúdo principal
-                document.getElementById('content').innerHTML = `<h2>Guia de Tarefas</h2>${table.outerHTML}`;
+                document.getElementById('content').innerHTML = `<h2>Guia de Tarefas - Sala 01</h2>${table.outerHTML}`;
             } else {
                 document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
             }
@@ -203,6 +203,7 @@
         }
     }
 </script>
+
 
 </body>
 
