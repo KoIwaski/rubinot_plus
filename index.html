@@ -225,4 +225,16 @@
             if (section === 'task') {
                 loadTaskContentFromSpreadsheet();
             } else {
-                document.getElementBy
+                document.getElementById('content').innerHTML = content[section] || '<p>Conteúdo não encontrado.</p>';
+            }
+
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+
+            button.classList.add('selected');
+        }
+    </script>
+</body>
+
+</html>
+
