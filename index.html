@@ -155,13 +155,49 @@ async function loadTaskContentFromSpreadsheet() {
         const table = doc.querySelector('table');
 
         if (table) {
-            // Remove linhas em branco
+            // Adicionando o colgroup para definir os tamanhos das colunas
+            const colgroup = `
+                <colgroup>
+                    <col style="width: 7%;">  <!-- Coluna 1 -->
+                    <col style="width: 4%;">  <!-- Coluna 2 -->
+                    <col style="width: 7%;">  <!-- Coluna 3 -->
+                    <col style="width: 7%;">  <!-- Coluna 4 -->
+                    <col style="width: 20%;"> <!-- Coluna 5 -->
+                    <col style="width: 20%;"> <!-- Coluna 6 -->
+                    <col style="width: 20%;"> <!-- Coluna 7 -->
+                </colgroup>`;
+            table.insertAdjacentHTML('afterbegin', colgroup);
+
+            // Remover linhas em branco
             const rows = table.querySelectorAll('tr');
-            rows.forEach((row, rowIndex) => {
+            rows.forEach((row) => {
                 if (!row.innerText.trim()) {
                     row.remove(); // Remove linhas que estão completamente vazias
                 }
             });
+
+            // Remover a primeira coluna (sequencial)
+            const allRows = table.querySelectorAll('tr');
+            allRows.forEach(row => {
+                const cells = row.querySelectorAll('td, th');
+                if (cells.length > 0) {
+                    cells[0].remove(); // Remove a primeira célula de cada linha
+                }
+            });
+
+            // Renderizar a tabela no conteúdo da página
+            document.getElementById('content').innerHTML = `<h2>Guia de Tarefas - Sala 01</h2>${table.outerHTML}`;
+        } else {
+            document.getElementById('content').innerHTML = '<p>Erro ao carregar a tabela da planilha.</p>';
+        }
+    } catch (error) {
+        console.error('Erro ao carregar a planilha:', error);
+        document.getElementById('content').innerHTML = '<p>Erro ao carregar a Guia Task.</p>';
+    }
+}
+        
+        
+    );
 
             // Remove a primeira coluna (sequencial)
             const allRows = table.querySelectorAll('tr');
